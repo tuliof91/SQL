@@ -1,0 +1,40 @@
+/*
+* DB: Store
+* Table: orders
+* Question: Get all orders from customers who live in Ohio (OH), New York (NY) or Oregon (OR) state
+* ordered by orderid
+*/
+select * from customers;
+select * from orders;
+
+SELECT *
+FROM orders o
+INNER JOIN customers c
+	ON o.customerid = c.customerid
+WHERE c.state IN ('NY', 'OH', 'OR')
+ORDER BY o.orderid;
+
+/*
+* DB: Store
+* Table: products
+* Question: Show me the inventory for each product
+*/
+SELECT * FROM products;
+SELECT * FROM inventory;
+
+SELECT p.prod_id, i.quan_in_stock
+FROM products p
+INNER JOIN inventory i
+	ON p.prod_id = i.prod_id;
+	
+/*
+* DB: Employees
+* Table: employees
+* Question: Show me for each employee which department they work in
+*/
+SELECT e.first_name, d.dept_name 
+FROM employees AS e
+INNER JOIN dept_emp AS de
+	ON e.emp_no = de.emp_no
+Inner Join departments AS d
+	ON de.dept_no = d.dept_no
